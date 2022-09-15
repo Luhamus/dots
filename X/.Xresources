@@ -1,0 +1,12 @@
+!! sxiv
+Sxiv.background: #000
+Sxiv.foreground: #00C0FF
+
+
+!! st
+
+!!Transparency
+*.alpha: .92
+
+!! Font
+*.font: Hack Nerd Font Mono:size=13

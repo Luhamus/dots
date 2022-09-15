@@ -1,0 +1,11 @@
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# Take a Screenshot
+super + S
+	maim --select | tee ~/pix/ss/$(date +%s).png | xclip -selection clipboard -t image/png
+
+#Lockscreen
+super + L
+	~/.local/scripts/lockScreen

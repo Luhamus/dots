@@ -1,0 +1,5 @@
+#! /bin/bash
+
+DIR=~/pix/screenLocks
+IMG=$(shuf -n 1 -e $(ls $DIR))
+i3lock --verif-text="Üks hetk…" --wrong-text="Põmmpea!" --noinput-text="Gimme input" --ind-pos=150:525 --time-pos=150:650 --date-pos=150:675 -Fk -i $DIR/$IMG --ring-width 6 --ring-color=#BBD66CFF --keyhl-color=85FF00FF --insidever-color=FF7F0033 --ringver-color=FF7F00FF

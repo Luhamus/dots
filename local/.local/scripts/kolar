@@ -1,0 +1,5 @@
+#! /bin/bash
+
+bluetoothctl power on 1> /dev/null
+bluetoothctl discoverable on 1> /dev/null
+bluetoothctl connect 6C:47:60:09:2A:DF | tail -n 1

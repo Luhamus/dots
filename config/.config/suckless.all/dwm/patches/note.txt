@@ -1,0 +1,5 @@
+Patchin order
+-------------
+1. fullgaps
+2. swallow
+
