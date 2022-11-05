@@ -32,12 +32,12 @@
   (set-cursor-color "#ff9000")
 
   (when (member "Hack Nerd Font Mono" (font-family-list))
-    (set-frame-font "Hack Nerd Font Mono-12" t t))
+    (set-frame-font "Hack Nerd Font Mono-11" t t))
 #+end_src
 
 ** Disable Oppacaty
 #+begin_src emacs-lisp
-  (set-frame-parameter (selected-frame) 'alpha '(100 . 50))
+  (add-to-list 'default-frame-alist '(alpha 100))
 #+end_src
 
 ** Dashboard
@@ -85,21 +85,24 @@
 
 * Basic behaviour settings
 #+begin_src emacs-lisp
-  (defalias 'yes-or-no-p 'y-or-n-p)
-  (setq ring-bell-function 'ignore)
+(defalias 'yes-or-no-p 'y-or-n-p)
+(setq ring-bell-function 'ignore)
 
-  (setq auto-save-default nil)
-  (setq create-lockfiles nil)
-  (setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+(setq make-backup-files nil)
 
-  (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
-  (setq bookmark-set-fringe-mark nil)
+(setq bookmark-set-fringe-mark nil)
 
-  (setq scroll-conservatively 10)
-  (setq scroll-margin 7)
+(setq scroll-conservatively 10)
+(setq scroll-margin 7)
+
+(use-package transpose-frame
+:ensure t)
 #+end_src
 
 * Text editing
@@ -114,7 +117,8 @@
   (global-subword-mode 1)
 
   ;; Make sure tab-width is 4 and not 8
-  (setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
   (set-language-environment "UTF-8")
   (set-default-coding-systems 'utf-8)
@@ -126,27 +130,29 @@
 #+end_src
 ** Hans VIMmer
 #+begin_src emacs-lisp
-   (use-package evil
-     :ensure t
-     :init
-     (setq evil-want-keybinding nil)
-     (evil-mode 1))
+(use-package evil
+  :ensure t
+  :config
+  (evil-set-undo-system 'undo-redo)
+  :init
+  (setq evil-want-keybinding nil)
+  (evil-mode 1))
 
-   (use-package evil-collection
-     :after evil
-     :ensure t
-     :config
-     (evil-collection-init '(dashboard dired
-      org-present org magit company ggtags)))
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init '(dashboard dired bookmark
+   org-present org magit company ggtags doc-view)))
 
-   (use-package key-chord
-     :ensure t
-     :config
-     ;; Max time delay between two key presses to be considered a key chord
-     (setq key-chord-one-key-delay .5)
-     (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
-     :init
-     (key-chord-mode 1))
+(use-package key-chord
+  :ensure t
+  :config
+  ;; Max time delay between two key presses to be considered a key chord
+  (setq key-chord-one-key-delay .5)
+  (key-chord-define evil-insert-state-map "jj" 'evil-normal-state)
+  :init
+  (key-chord-mode 1))
 
 #+end_src
 * Org mode
@@ -156,6 +162,21 @@
     :ensure t
     :config
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+* LaTeX
+** Basic conf
+#+begin_src emacs-lisp
+  (use-package auctex
+    :ensure t
+    :defer t
+    :hook (LaTeX-mode .
+              (lambda ()
+                (push (list 'output-pdf "Zathura")
+                  TeX-view-program-selection))))
+#+end_src
+** DocView autoRevert
+#+begin_src emacs-lisp
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 #+end_src
 
 * IDE

@@ -11,6 +11,7 @@ export EDITOR="vim"
 alias ls='ls --color=auto'
 alias grep="grep -i --color"
 alias c="clear"
+alias cal="cal -m"
 alias sxiv="sxiv -tb"
 alias iv="sxiv -tb ~/pix"
 alias update="sudo pacman -Sy archlinux-keyring && sudo pacman -Su"
@@ -19,7 +20,12 @@ alias nett="nmcli device wifi list"
 # nmcli device wifi connect SSID or BSSID password /password/
 
 alias server="ssh root@luhamus.com"
+alias sesy="rsync -auP ~/server/site/public/ root@luhamus.com:/var/www/site"
+alias digisync="rsync -aP --delete /home/rasmus/code/digirannak/ root@luhamus.com:/var/www/site/digirannak"
 
+# Stupid Zulip
+alias zuldl="cd /home/rasmus/snap/zulip/43/Downloads"
 
 # While opeing bash
-quotes
+#quotes
+echo Remember
