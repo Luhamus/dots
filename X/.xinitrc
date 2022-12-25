@@ -31,7 +31,7 @@ fi
 
 # Statusbar loop
 while true; do
-   xsetroot -name "$( cat /sys/class/power_supply/BAT0/capacity )% | $( date +"%F %R" )"
+   xsetroot -name "$( cat /sys/class/power_supply/BAT0/capacity )% | $( date +"%d/%m/%+4Y %R")"
 #   xsetroot -name "$( date +"%F %R" )"
    sleep 1m    # Update time every minute
 done &
