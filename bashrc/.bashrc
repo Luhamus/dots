@@ -21,11 +21,11 @@ alias nett="nmcli device wifi list"
 
 alias server="ssh root@luhamus.com"
 alias sesy="rsync -auP ~/server/site/public/ root@luhamus.com:/var/www/site"
-alias digisync="rsync -aP --delete /home/rasmus/code/digirannak/ root@luhamus.com:/var/www/site/digirannak"
+alias digisync="rsync -aP --delete --exclude .git/ /home/rasmus/code/digirannak/ root@luhamus.com:/var/www/site/digirannak"
 
 # Stupid Zulip
 alias zuldl="cd /home/rasmus/snap/zulip/43/Downloads"
 
 # While opeing bash
 #quotes
-echo Remember
+#echo Remember
